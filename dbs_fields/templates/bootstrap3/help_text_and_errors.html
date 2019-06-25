@@ -1,0 +1,9 @@
+{% if field.errors %}
+	{% for error in field.errors %}
+		<span class="help-block">{{ error|escape }}</span>
+	{% endfor %}
+{% elif field.help_text %}
+	<span class="help-block">
+		{{ field.help_text }}
+	</span>
+{% endif %}

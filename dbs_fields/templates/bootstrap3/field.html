@@ -1,0 +1,63 @@
+{% if field.is_hidden %}
+    {{ field }}
+{% elif field_type == 'checkbox' %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+        <div class="checkbox">
+            <label for="{{ field.id_for_label }}">
+                {{ field }}
+                {{ field.label }}
+            </label>
+        </div>
+        {% include "bootstrap3/help_text_and_errors.html" %}
+    </div>
+{% elif field_type == 'multi_checkbox' %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+        {% if field.label %}
+            <label{% if sr_label %} class="sr-only"{% endif %}>{{ field.label }}</label>
+        {% endif %}
+        {% for choice in field %}
+            <div class="{% if inline %}checkbox-inline{% else %}checkbox{% endif %}">
+                <label for="{{ choice.data.attrs.id }}">
+                    {{ choice.tag }}
+                    {{ choice.choice_label }}
+                </label>
+            </div>
+        {% endfor %}
+        {% include "bootstrap3/help_text_and_errors.html" %}
+    </div>
+{% elif field_type == 'radio' %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+        {% if field.label %}
+            <label{% if sr_label %} class="sr-only"{% endif %}>{{ field.label }}</label>
+        {% endif %}
+        {% for choice in field %}
+            <div class="{% if inline %}radio-inline{% else %}radio{% endif %}">
+                <label for="{{ choice.data.attrs.id }}">
+                    {{ choice.tag }}
+                    {{ choice.choice_label }}
+                </label>
+            </div>
+        {% endfor %}
+        {% include "bootstrap3/help_text_and_errors.html" %}
+    </div>
+{% else %}
+    <div class="form-group{% if field.errors %} has-error{% endif %}">
+        {% if field.label %}
+            <label for="{{ field.id_for_label }}"{% if sr_label %} class="sr-only"{% endif %}>{{ field.label }}</label>
+        {% endif %}
+        {% if prepend or append %}
+            <div class="input-group">
+                {% if prepend %}
+                    <span class="input-group-addon">{{ prepend|safe }}</span>
+                {% endif %}
+                {{ field }}
+                {% if append %}
+                    <span class="input-group-addon">{{ append|safe }}</span>
+                {% endif %}
+            </div>
+        {% else %}
+            {{ field }}
+        {% endif %}
+        {% include "bootstrap3/help_text_and_errors.html" %}
+    </div>
+{% endif %}

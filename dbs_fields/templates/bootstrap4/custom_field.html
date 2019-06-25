@@ -1,0 +1,49 @@
+{% if field.is_hidden %}
+    {{ field }}
+{% elif field_type == 'checkbox' %}
+    <div class="form-group">
+        <div class="custom-control custom-checkbox">
+            {{ field }}
+            <label for="{{ field.id_for_label }}" class="custom-control-label">{{ field.label }}</label>
+        </div>
+        {% include "bootstrap4/help_text_and_errors.html" %}
+    </div>
+{% elif field_type == 'multi_checkbox' %}
+    <div class="form-group">
+        {% if field.label %}
+            <label{% if sr_label %} class="sr-only"{% endif %}>{{ field.label }}</label>
+        {% endif %}
+        {% for choice in field %}
+            <div class="custom-control custom-checkbox{% if inline %} custom-control-inline{% endif %}">
+                {{ choice.tag }}
+                <label for="{{ choice.data.attrs.id }}" class="custom-control-label">{{ choice.choice_label }}</label>
+            </div>
+        {% endfor %}
+        {% include "bootstrap4/help_text_and_errors.html" %}
+    </div>
+{% elif field_type == 'radio' %}
+    <div class="form-group">
+        {% if field.label %}
+            <label{% if sr_label %} class="sr-only"{% endif %}>{{ field.label }}</label>
+        {% endif %}
+        {% for choice in field %}
+            <div class="custom-control custom-radio{% if inline %} custom-control-inline{% endif %}">
+                {{ choice.tag }}
+                <label for="{{ choice.data.attrs.id }}" class="custom-control-label">{{ choice.choice_label }}</label>
+            </div>
+        {% endfor %}
+        {% include "bootstrap4/help_text_and_errors.html" %}
+    </div>
+{% elif field_type == 'file' %}
+    <div class="form-group">
+        <div class="custom-file">
+            {{ field }}
+            {% if field.label %}
+                <label for="{{ field.id_for_label }}" class="custom-file-label{% if sr_label %} sr-only{% endif %}">{{ field.label }}</label>
+            {% endif %}
+        </div>
+        {% include "bootstrap4/help_text_and_errors.html" %}
+    </div>
+{% else %}
+    {% include "bootstrap4/general.html" %}
+{% endif %}

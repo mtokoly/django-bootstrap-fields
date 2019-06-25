@@ -1,0 +1,26 @@
+{% if field.is_hidden %}
+    {{ field }}
+{% elif field_type == 'checkbox' %}
+    <div class="form-group">
+        <div class="form-check">
+            {{ field }}
+            <label for="{{ field.id_for_label }}" class="form-check-label">{{ field.label }}</label>
+        </div>
+        {% include "bootstrap4/help_text_and_errors.html" %}
+    </div>
+{% elif field_type == 'radio' or field_type == 'multi_checkbox' %}
+    <div class="form-group">
+        {% if field.label %}
+            <label{% if sr_label %} class="sr-only"{% endif %}>{{ field.label }}</label>
+        {% endif %}
+        {% for choice in field %}
+            <div class="form-check{% if inline %} form-check-inline{% endif %}">
+                {{ choice.tag }}
+                <label for="{{ choice.data.attrs.id }}" class="form-check-label">{{ choice.choice_label }}</label>
+            </div>
+        {% endfor %}
+        {% include "bootstrap4/help_text_and_errors.html" %}
+    </div>
+{% else %}
+    {% include "bootstrap4/general.html" %}
+{% endif %}
