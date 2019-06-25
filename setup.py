@@ -3,6 +3,9 @@ import dbs_fields
 
 from setuptools import find_packages, setup
 
+with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
+    README = readme.read()
+
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
@@ -14,7 +17,8 @@ setup(
     include_package_data=True,
     license='MIT',
     description="render Django form fields with complete Bootstrap HTML markup",
-    long_description=open('README.rst').read(),
+    long_description_content_type='text/markdown',
+    long_description=README,
     url='https://github.com/mtokoly/django-bootstrap-fields',
     author='Matthew Tokoly',
     author_email='tokoly@gmail.com',
