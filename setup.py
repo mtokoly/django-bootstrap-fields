@@ -3,9 +3,6 @@ import dbs_fields
 
 from setuptools import find_packages, setup
 
-with open(os.path.join(os.path.dirname(__file__), 'README.rst')) as readme:
-    README = readme.read()
-
 # allow setup.py to be run from any path
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
@@ -16,8 +13,8 @@ setup(
     packages=find_packages(),
     include_package_data=True,
     license='MIT',
-    description="Effortlessly spice up your forms with Spicy Fields.",
-    long_description=README,
+    description="render Django form fields with complete Bootstrap HTML markup",
+    long_description=open('README.rst').read(),
     url='https://github.com/mtokoly/django-bootstrap-fields',
     author='Matthew Tokoly',
     author_email='tokoly@gmail.com',

@@ -3,7 +3,7 @@ Django Bootstrap Fields
 
 ``django-bootstrap-fields`` provides you with a ``{% dbs_field %}`` tag
 that allows you to easily render Django form fields with complete
-Bootstrap html markup.
+Bootstrap html markup. Works with Bootstrap 3 and 4.
 
 Installation
 ------------
