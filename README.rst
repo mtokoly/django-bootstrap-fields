@@ -12,16 +12,16 @@ Install latest stable version into your python path using ``pip``:
 
 ::
 
-   pip install -U django-bootstrap-fields
+    pip install -U django-bootstrap-fields
 
 Add ``dbs_fields`` to your ``INSTALLED_APPS`` in ``settings.py``:
 
 ::
 
-   INSTALLED_APPS = (
-       ...
-       'dbs_fields',
-   )
+    INSTALLED_APPS = (
+        ...
+        'dbs_fields',
+    )
 
 Templates
 ---------
@@ -31,7 +31,7 @@ You can set your default template pack for your project using the
 
 ::
 
-   DBS_TEMPLATES = 'bootstrap4'  # Options: 'bootstrap3', 'bootstrap4', 'bootstrap4custom'
+    DBS_TEMPLATES = 'bootstrap4'  # Options: 'bootstrap3', 'bootstrap4', 'bootstrap4custom'
 
 Usage
 -----
@@ -42,23 +42,23 @@ style it accordingly.
 
 ::
 
-   {% dbs_field field inline=True sr_label=True prepend="$" append=".00" %}
+    {% dbs_field field inline=True sr_label=True prepend="$" append=".00" %}
 
 Example
 -------
 
 ::
 
-	{% extends “base.html” %}
-	{% load dbs_tags %}
+    {% extends “base.html” %}
+    {% load dbs_tags %}
 
-	{% block content %}
+    {% block content %}
+        
+        <form action="." method="post">
+            {% csrf_token %}
+            {% for field in form %}
+                {% dbs_field field %}
+            {% endfor %}
+        </form>
 
-		<form action="." method="post">
-			{% csrf_token %}
-				{% for field in form %}
-					{% dbs_field field %}
-				{% endfor %}
-   		</form>
-
-   	{% endblock content %}
+    {% endblock content %}
