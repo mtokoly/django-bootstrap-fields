@@ -47,19 +47,18 @@ style it accordingly.
 Example
 -------
 
-~~~~ {% extends “base.html” %} {% load dbs_tags %}
+::
 
-{% block content %}
+	{% extends “base.html” %}
+	{% load dbs_tags %}
 
-.. raw:: html
+	{% block content %}
 
-   <form action="." method="post">
+		<form action="." method="post">
+			{% csrf_token %}
+				{% for field in form %}
+					{% dbs_field field %}
+				{% endfor %}
+   		</form>
 
-{% csrf_token %} {% for field in form %} {% dbs_field field %} {% endfor
-%}
-
-.. raw:: html
-
-   </form>
-
-{% endblock content %}
+   	{% endblock content %}
