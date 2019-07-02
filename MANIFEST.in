@@ -1,5 +1,4 @@
 include LICENSE
 include MANIFEST.in
-include README.rst
-recursive-include dbs_fields/static *
+include README.md
 recursive-include dbs_fields/templates *
