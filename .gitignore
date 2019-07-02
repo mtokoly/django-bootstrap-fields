@@ -5,3 +5,4 @@ dist/*
 *.pyo
 __pycache__
 *.DS_Store
+pypi.txt
