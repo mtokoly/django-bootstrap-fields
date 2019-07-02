@@ -43,7 +43,7 @@ class DbsField(object):
         widgets = [
             'Select',
             'NullBooleanSelect',
-            'SelectMultiple',
+            'SelectMultiple'
         ]
         return self.widget in widgets
 
@@ -55,14 +55,13 @@ class DbsField(object):
 
     def is_multi_checkbox(self):
         widgets = [
-            'CheckboxSelectMultiple',
+            'CheckboxSelectMultiple'
         ]
         return self.widget in widgets
 
     def is_radio(self):
         widgets = [
-            'RadioSelect',
-            'CheckboxSelectMultiple',
+            'RadioSelect'
         ]
         return self.widget in widgets
 
